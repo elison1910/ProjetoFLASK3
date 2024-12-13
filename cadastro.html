@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>TeamFlow - Cadastre-se</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body>
+    
+<header>
+    <h1 class="título">TeamFlow</h1>
+</header>
+
+<main>
+    <div class="AreaLogin">
+        <h2 class="h2"><u>Faça seu Cadastro</u></h2>
+        <br>
+        <form method="POST" action="/registro">
+            <label for="email">Digite seu Email:</label>
+            <br>
+            <input type="text" id="email" name="email" style="width: 250px;" required>
+            <br><br>
+
+            <label for="senha">Digite sua Senha:</label>
+            <br>
+            <input type="password" id="senha" name="senha" style="width: 250px;" required>
+            <br><br>
+
+            <label for="cargo">Cargo: 1 - Gerente ou 2 - Atendente:</label>
+            <br>
+            <input type="text" id="cargo" name="cargo" style="width: 250px;" required>
+            <br><br>
+
+            <button type="submit">CADASTRAR</button>
+        </form>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class=flashes>
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <p class="p1">Já tem uma conta? <a href="/login">Faça o Login</a></p>
+    </div>
+</main>
+
+</body>
+</html>

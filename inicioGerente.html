@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeamFlow - Gerente</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='inicioGerente.css') }}">
+</head>
+<body>
+    <header class="header">
+        <h1>Bem-vindo à TeamFlow</h1>
+        <p>-----------------</p>
+        <h2>Área do Gerente</h2>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <!-- Seção de Vendas -->
+        <section id="vendas" class="content">
+            <h2>Vendas</h2>
+            <form method="POST" action="/vendas">
+                <input type="text" name="cliente_id" placeholder="Cliente ID" required>
+                <input type="text" name="produto_id" placeholder="Produto ID" required>
+                <input type="number" name="quantidade" placeholder="Quantidade" required>
+                <input type="text" name="valor_total" placeholder="Valor Total" required>
+                <button type="submit">Cadastrar Venda</button>
+            </form>
+
+            <h3>Lista de Vendas</h3>
+            <ul>
+                {% for venda in vendas %}
+                    <li>ID: {{ venda.id }}</li>
+                    <li>Cliente ID: {{ venda.cliente_id }}</li>
+                    <li>Produto ID: {{ venda.produto_id }}</li>
+                    <li>Quantidade: {{ venda.quantidade }}</li>
+                    <li>Valor Total: {{ venda.valor_total }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <!-- Seção de Fornecedores -->
+        <section id="fornecedores" class="content">
+            <h2>Fornecedores</h2>
+            <form method="POST" action="/fornecedores">
+                <input type="text" name="nome" placeholder="Nome" required>
+                <input type="text" name="contato" placeholder="Contato">
+                <input type="text" name="telefone" placeholder="Telefone">
+                <textarea name="endereco" placeholder="Endereço"></textarea>
+                <button type="submit">Cadastrar Fornecedor</button>
+            </form>
+
+            <h3>Lista de Fornecedores</h3>
+            <ul>
+                {% for fornecedor in fornecedores %}
+                    <li>ID: {{ fornecedor.id }}</li>
+                    <li>Nome: {{ fornecedor.nome }}</li>
+                    <li>Contato: {{ fornecedor.contato }}</li>
+                    <li>Telefone: {{ fornecedor.telefone }}</li>
+                    <li>Endereço: {{ fornecedor.endereco }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <!-- Seção de Avaliações -->
+        <section id="avaliacoes" class="content">
+            <h2>Avaliações</h2>
+            <form method="POST" action="/avaliacoes">
+                <input type="text" name="produto_id" placeholder="Produto ID" required>
+                <input type="text" name="cliente_id" placeholder="Cliente ID" required>
+                <input type="number" name="avaliacao" min="1" max="5" placeholder="Avaliação (1-5)" required>
+                <textarea name="comentario" placeholder="Comentário"></textarea>
+                <button type="submit">Cadastrar Avaliação</button>
+            </form>
+
+            <h3>Lista de Avaliações</h3>
+            <ul>
+                {% for avaliacao in avaliacoes %}
+                    <li>ID: {{ avaliacao.id }}</li>
+                    <li>Produto ID: {{ avaliacao.produto_id }}</li>
+                    <li>Cliente ID: {{ avaliacao.cliente_id }}</li>
+                    <li>Avaliação: {{ avaliacao.avaliacao }}</li>
+                    <li>Comentário: {{ avaliacao.comentario }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Página oficial da TeamFlow. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function mostrarMensagem() {
+            alert("Bem-vindo à área do Gerente!");
+        }
+    </script>
+
+</body>
+</html>
