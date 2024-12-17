@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeamFlow - Atendente</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='inicioAtend.css') }}">
+</head>
+
+<body onload="mostrarMensagem()">
+    <header class="header">
+        <h1>Bem-vindo à TeamFlow</h1>
+        <p>-----------------</p>
+        <h2>Área do Atendente</h2>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <!-- Área de Gerenciamento -->
+        <section id="atendimentos" class="content">
+
+            <!-- Formulário para Cadastrar Atendimentos -->
+            <h3>Cadastrar Atendimentos</h3>
+            <form action="/cadastrar_atendimento" method="POST">
+                <input type="number" name="cliente_id" placeholder="Cliente ID" required>
+                <textarea name="descricao" placeholder="Descrição" required></textarea>
+                <input type="text" name="status" placeholder="Status" required>
+                <button type="submit">Cadastrar Atendimento</button>
+            </form>
+
+            <!-- Lista de Atendimentos -->
+            <h3>Lista de Atendimentos</h3>
+            <ul>
+                {% for atendimento in atendimentos %}
+                    <li>ID: {{ atendimento.id }}</li>
+                    <li>Cliente ID: {{ atendimento.cliente_id }}</li>
+                    <li>Descrição: {{ atendimento.descricao }}</li>
+                    <li>Status: {{ atendimento.status }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section id="produtos" class="content">
+            <!-- Formulário para Cadastrar Produtos -->
+            <h3>Cadastrar Produtos</h3>
+            <form action="/cadastrar_produto" method="POST">
+                <input type="text" name="nome" placeholder="Nome" required>
+                <textarea name="descricao" placeholder="Descrição"></textarea>
+                <input type="number" step="0.01" name="preco" placeholder="Preço" required>
+                <input type="number" name="estoque" placeholder="Estoque" required>
+                <button type="submit">Cadastrar Produto</button>
+            </form>
+
+            <!-- Lista de Produtos -->
+            <h3>Lista de Produtos</h3>
+            <ul>
+                {% for produto in produtos %}
+                    <li>ID: {{ produto.id }}</li>
+                    <li>Nome: {{ produto.nome }}</li>
+                    <li>Preço: {{ produto.preco }}</li>
+                    <li>Estoque: {{ produto.estoque }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section id="historicos" class="content">
+            <!-- Formulário para Cadastrar Histórico de Atendimentos -->
+            <h3>Cadastrar Histórico de Atendimentos</h3>
+            <form action="/cadastrar_historico" method="POST">
+                <input type="number" name="atendimento_id" placeholder="Atendimento ID" required>
+                <textarea name="observacoes" placeholder="Observações"></textarea><br>
+                <button type="submit">Cadastrar Histórico</button>
+            </form>
+
+            <!-- Lista de Históricos de Atendimentos -->
+            <h3>Lista de Históricos de Atendimentos</h3>
+            <ul>
+                {% for historico in historicos %}
+                    <li>ID: {{ historico.id }}</li>
+                    <li>Atendimento ID: {{ historico.atendimento_id }}</li>
+                    <li>Observações: {{ historico.observacoes }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Página oficial da TeamFlow. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function mostrarMensagem() {
+            alert("Bem-vindo à área do Atendente!");
+        }
+    </script>
+
+</body>
+
+</html>
